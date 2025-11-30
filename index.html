@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-boxes"></i> Inventory Project</h1>
+                <p class="header-subtitle">Manage your inventory with ease</p>
+            </div>
+            <nav class="navbar">
+                <button class="nav-btn active" data-section="products">
+                    <i class="fas fa-box"></i> Products
+                </button>
+                <button class="nav-btn" data-section="suppliers">
+                    <i class="fas fa-truck"></i> Suppliers
+                </button>
+                <button class="nav-btn" data-section="orders">
+                    <i class="fas fa-clipboard-list"></i> Orders
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Products Section -->
+            <section id="products" class="content-section active">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Products Management</h2>
+                        <p class="section-subtitle">Manage your product inventory</p>
+                    </div>
+                    <button class="btn btn-primary" id="addProductBtn">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </div>
+
+                <!-- Products List -->
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Products will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add/Edit Product Form -->
+                <div id="productFormModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="productFormTitle">Add New Product</h3>
+                            <button class="close-btn">&times;</button>
+                        </div>
+                        <form id="productForm" class="form">
+                            <div class="form-group">
+                                <label for="sku">SKU:</label>
+                                <input type="text" id="sku" name="sku" required>
+                                <span class="error-message" id="skuError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="productName">Name:</label>
+                                <input type="text" id="productName" name="name" required>
+                                <span class="error-message" id="nameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                <input type="number" id="price" name="price" step="0.01" min="0" required>
+                                <span class="error-message" id="priceError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="stock">Stock:</label>
+                                <input type="number" id="stock" name="stock" min="0" required>
+                                <span class="error-message" id="stockError"></span>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" id="cancelProductBtn">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Product</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Suppliers Section -->
+            <section id="suppliers" class="content-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Suppliers Management</h2>
+                        <p class="section-subtitle">Manage your suppliers and contacts</p>
+                    </div>
+                    <button class="btn btn-primary" id="addSupplierBtn">
+                        <i class="fas fa-plus"></i> Add Supplier
+                    </button>
+                </div>
+
+                <!-- Suppliers List -->
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="suppliersTableBody">
+                            <!-- Suppliers will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add/Edit Supplier Form -->
+                <div id="supplierFormModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="supplierFormTitle">Add New Supplier</h3>
+                            <button class="close-btn">&times;</button>
+                        </div>
+                        <form id="supplierForm" class="form">
+                            <div class="form-group">
+                                <label for="supplierName">Name:</label>
+                                <input type="text" id="supplierName" name="name" required>
+                                <span class="error-message" id="supplierNameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact:</label>
+                                <input type="text" id="contact" name="contact" required>
+                                <span class="error-message" id="contactError"></span>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" id="cancelSupplierBtn">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Supplier</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders" class="content-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Orders Management</h2>
+                        <p class="section-subtitle">Track and manage your orders</p>
+                    </div>
+                    <button class="btn btn-primary" id="addOrderBtn">
+                        <i class="fas fa-plus"></i> Create Order
+                    </button>
+                </div>
+
+                <!-- Orders List -->
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Supplier</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Orders will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add/Edit Order Form -->
+                <div id="orderFormModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="orderFormTitle">Create New Order</h3>
+                            <button class="close-btn">&times;</button>
+                        </div>
+                        <form id="orderForm" class="form">
+                            <div class="form-group">
+                                <label for="supplierSelect">Supplier:</label>
+                                <select id="supplierSelect" name="supplierId" required>
+                                    <option value="">Select Supplier</option>
+                                </select>
+                                <span class="error-message" id="supplierSelectError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <select id="status" name="status" required>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Order Items:</label>
+                                <div id="orderItems">
+                                    <!-- Order items will be added here -->
+                                </div>
+                                <button type="button" class="btn btn-secondary" id="addOrderItemBtn">
+                                    <i class="fas fa-plus"></i> Add Item
+                                </button>
+                            </div>
+                            <div class="order-total">
+                                <strong>Total: $<span id="orderTotal">0.00</span></strong>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" id="cancelOrderBtn">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Order</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirmModal" class="modal">
+            <div class="modal-content confirm-modal">
+                <div class="modal-header">
+                    <h3>Confirm Delete</h3>
+                </div>
+                <p id="confirmMessage">Are you sure you want to delete this item?</p>
+                <div class="form-actions">
+                    <button class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
+                    <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
