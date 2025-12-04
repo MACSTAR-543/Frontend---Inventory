@@ -2,9 +2,9 @@
 
 ## 🔗 Live Links
 
-**Frontend URL:** https://inventory-management-system-frontend-eta.vercel.app
+**Frontend Link:** https://inventory-management-system-frontend-eta.vercel.app
 
-**Backend API URL:** https://crud-api-4-cncd.onrender.com/api
+**Backend Link :** https://crud-api-4-cncd.onrender.com/api
 
 ## 📚 API Documentation
 
