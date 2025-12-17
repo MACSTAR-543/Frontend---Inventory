@@ -2,7 +2,7 @@
 
 ## 🔗 Live Links
 
-**Frontend Link:** 
+**Frontend Link:** https://frontend-inventory-five.vercel.app
 
 **Backend Link :** https://crud-api-4-cncd.onrender.com/api
 
